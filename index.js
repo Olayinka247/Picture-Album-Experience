@@ -1,13 +1,13 @@
 const API_KEY = "563492ad6f91700001000001d49953abf757426a9c341cb406cdc44b";
 
-const URL = "https://api.pexels.com/v1/search?query=?q=people";
+const URL = "https://api.pexels.com/v1/search?query=";
 
-const URL2 = "https://api.pexels.com/v1/search?query=?q=football";
+const URL2 = "https://api.pexels.com/v1/search?query=";
 
 const rowDisplay = document.querySelector(".displayRow");
 
-async function loadImages() {
-  let response = await fetch(URL, {
+async function loadImages(query) {
+  let response = await fetch(URL + query, {
     headers: { Authorization: API_KEY },
   });
   if (response.ok) {
@@ -19,8 +19,8 @@ async function loadImages() {
   }
 }
 
-async function loadSecondary() {
-  let response = await fetch(URL2, {
+async function loadSecondary(query) {
+  let response = await fetch(URL2 + query, {
     headers: { Authorization: API_KEY },
   });
   if (response.ok) {
@@ -32,6 +32,9 @@ async function loadSecondary() {
     console.log("Something went wrong");
   }
 }
+const handleSearch = (event) => {
+  loadImages(event.target.value);
+};
 
 const modalDisplay = (event) => {
   const locateimg = event.target.closest(".card").children[0].src;
