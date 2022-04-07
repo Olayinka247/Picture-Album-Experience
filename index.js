@@ -40,6 +40,10 @@ const modalDisplay = (event) => {
   modalContent.innerHTML = displayImg;
 };
 
+const hideDisplay = (event) => {
+  event.target.closest(".col-md-4").remove();
+};
+
 function displayCard(data) {
   rowDisplay.innerHTML = data.photos
     .map(
@@ -67,8 +71,9 @@ function displayCard(data) {
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-secondary"
+                  onclick= "hideDisplay(event)"
                 >
-                  Edit
+                  Hide
                 </button>
               </div>
               <small class="text-muted">ID: ${card.id}</small>
